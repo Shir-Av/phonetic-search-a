@@ -1,37 +1,41 @@
 #include "PhoneticFinder.hpp"
-
+#include <iostream>
 using namespace std;
 namespace phonetic{
+    
     string find(string text, string word){
-        if (text.find(word) != string::npos){ //stackoverflow.com/questions/2340281/check-if-a-string-contains-a-string-in-c
-            return word;
-        }
+         
+        if (word == "" || word == " " || word.find(" ") != string::npos) __throw_invalid_argument ("excption caught : the word does not exist.");
+    
         bool flag = false;
         int slen = text.length(); 
 
         for (int i = 0; i < slen; i++)
             {
                 string temp = "";
-                while (text.at(i) != ' ')
+                while (i < slen && text.at(i) != ' ')
                     {
                         temp += text.at(i);
                         i++;
                     }
-
-                if (word.length() == temp.length())
-                    {
+            
+                if (word.length() == temp.length()){
+                    
                         flag = false;
                         for (int j = 0; j < word.length(); j++){
                             if (equalchar(word.at(j),temp.at(j))){
                                 flag = true;
                             }
-                            else break;
+                            else{
+                                flag = false;
+                                break;
+                            } 
                         }
 
                         if (flag) return temp;
                         
-                    }
-
+                }
+                
 
             }
         __throw_invalid_argument ("excption caught : the word does not exist.");
@@ -41,9 +45,12 @@ namespace phonetic{
     }
 
     bool equalchar (char user, char text){
+        
+        if (tolower(user) == tolower(text) || user == text){
+            return true;
+        } 
 
-    
-        if (user == 'w' || user == 'W' || user == 'v' || user == 'V'){
+        else if (user == 'w' || user == 'W' || user == 'v' || user == 'V'){
             if (text == 'w' || text == 'W' || text == 'v' || text == 'V'){
                 return true;
             }

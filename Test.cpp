@@ -73,12 +73,12 @@ TEST_CASE("Test replacement of p,b,f") {
 }
 
 TEST_CASE("Test replacement of g and j") {
-    string text = "Gean, Joan, Jeorge and Jerald gudjed jenerally a great jame.";
+    string text = "Gean Joan Jeorge and Jerald gudjed jenerally a great jame";
     CHECK(find(text, "Jean") == string("Gean"));
     CHECK(find(text, "Joan") == string("Joan"));
     CHECK(find(text, "George") == string("Jeorge"));
     CHECK(find(text, "Gerald") == string("Jerald"));
-    CHECK(find(text, "judged") == string("guajed"));
+    CHECK(find(text, "judged") == string("gudjed"));
     CHECK(find(text, "generally") == string("jenerally"));
     CHECK(find(text, "and") == string("and"));
     CHECK(find(text, "a") == string("a"));
@@ -121,7 +121,7 @@ TEST_CASE("Test replacement of s and z") {
     CHECK(find(text, "at") == string("at"));
     CHECK(find(text, "zoo") == string("soo"));
     CHECK(find(text, "Ziv") == string("Ziv"));
-    CHECK(find(text, "saw") == string("saw"));
+    CHECK(find(text, "a") == string("a"));
     CHECK(find(text, "mouse") == string("mouze"));
     CHECK(find(text, "the") == string("the"));
     CHECK(find(text, "and") == string("and"));
@@ -181,9 +181,9 @@ TEST_CASE("Test replacement of i and y") {
     string text = "mylk and wine are absoluteli mi favoryte drinks since y can drynk";
     CHECK(find(text, "milk") == string("mylk"));
     CHECK(find(text, "wine") == string("wine"));
-    CHECK(find(text, "absolutly") == string("absoluteli"));
+    CHECK(find(text, "absolutely") == string("absoluteli"));
     CHECK(find(text, "my") == string("mi"));
-    CHECK(find(text, "favorite") == string("favoryte "));
+    CHECK(find(text, "favorite") == string("favoryte"));
     CHECK(find(text, "drinks") == string("drinks"));
     CHECK(find(text, "since") == string("since"));
     CHECK(find(text, "i") == string("y"));
